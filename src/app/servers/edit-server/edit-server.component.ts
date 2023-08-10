@@ -12,6 +12,7 @@ export class EditServerComponent implements OnInit {
   server: servertype = {id : 0, name : '', status : ''};
   serverName : string | null = '';
   serverStatus : string | null  = '';
+  allowEdit : number = 0;
 
   constructor(private serversService: ServersService,
               private activatedRoute : ActivatedRoute,) { }
@@ -27,6 +28,8 @@ export class EditServerComponent implements OnInit {
       this.serverName = this.server.name;
       this.serverStatus = this.server.status;
       });
+      
+      this.activatedRoute.queryParams.subscribe(qp => {this.allowEdit = qp["allowEdit"]});
   }
 
   onUpdateServer() {

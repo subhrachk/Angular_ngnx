@@ -16,6 +16,6 @@
     <option value="offline">Offline</option>
   </select>
 </div>
-<button
+<button [disabled]="allowEdit==1?false:true"
   class="btn btn-primary"
   (click)="onUpdateServer()">Update Server</button>

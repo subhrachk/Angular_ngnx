@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../AuthService.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private route : Router) { }
+  constructor(private route : Router,private authService : AuthService) { }
 
   gotoSrevrePage() {
     this.route.navigate(['/servers']);
@@ -16,5 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  LoggedIn() { this.authService.logIn()}
+  LoggedOut() {this.authService.logOut()}
 }
