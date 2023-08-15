@@ -27,7 +27,7 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + environment.firebaseAPIKey,
+        'https://ng-complete-guide-5c111-default-rtdb.firebaseio.com/',
         {
           email: email,
           password: password,
@@ -50,7 +50,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + environment.firebaseAPIKey,
+        'https://ng-complete-guide-5c111-default-rtdb.firebaseio.com/',
         {
           email: email,
           password: password,

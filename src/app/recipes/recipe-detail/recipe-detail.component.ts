@@ -10,8 +10,8 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe: Recipe;
-  id: number;
+  recipe: Recipe | null  = null;
+  id: number = 0;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToShoppingList() {
-    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    if (this.recipe) { this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients); }
   }
 
   onEditRecipe() {

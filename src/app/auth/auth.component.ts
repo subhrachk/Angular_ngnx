@@ -19,10 +19,10 @@ import { PlaceholderDirective } from '../shared/placeholder/placeholder.directiv
 export class AuthComponent implements OnDestroy {
   isLoginMode = true;
   isLoading = false;
-  error: string = null;
-  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
+  error: string = '';
+  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective | null = null;
 
-  private closeSub: Subscription;
+  private closeSub: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
@@ -69,7 +69,7 @@ export class AuthComponent implements OnDestroy {
   }
 
   onHandleError() {
-    this.error = null;
+    this.error = '';
   }
 
   ngOnDestroy() {
@@ -83,15 +83,16 @@ export class AuthComponent implements OnDestroy {
     const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(
       AlertComponent
     );
-    const hostViewContainerRef = this.alertHost.viewContainerRef;
-    hostViewContainerRef.clear();
+    const hostViewContainerRef = this.alertHost?.viewContainerRef;
+    hostViewContainerRef?.clear();
 
-    const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
-
+    const componentRef = hostViewContainerRef?.createComponent(alertCmpFactory);
+    if (componentRef) {
     componentRef.instance.message = message;
-    this.closeSub = componentRef.instance.close.subscribe(() => {
+    this.closeSub = componentRef?.instance.close.subscribe(() => {
       this.closeSub.unsubscribe();
-      hostViewContainerRef.clear();
+      hostViewContainerRef?.clear();
     });
+  }
   }
 }
