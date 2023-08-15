@@ -27,7 +27,7 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://ng-complete-guide-5c111-default-rtdb.firebaseio.com/',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB0xGrVandlNtog7vVHoninRVLOPmSxJH4',
         {
           email: email,
           password: password,
@@ -50,7 +50,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://ng-complete-guide-5c111-default-rtdb.firebaseio.com/',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB0xGrVandlNtog7vVHoninRVLOPmSxJH4',
         {
           email: email,
           password: password,
