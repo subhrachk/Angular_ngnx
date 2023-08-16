@@ -13,7 +13,7 @@ import { Recipe } from '../recipe.model';
 export class RecipeEditComponent implements OnInit {
   id: number = 0;
   editMode = false;
-  recipeForm: FormGroup = new FormGroup(null,null,null);
+  recipeForm: FormGroup = new FormGroup({});
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
