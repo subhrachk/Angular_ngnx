@@ -30,6 +30,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   onNewRecipe() {
+    console.log('New Recipe');
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
